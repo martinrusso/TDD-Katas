@@ -1,18 +1,27 @@
 #!/usr/bin/env ruby
 
 class Supermarket
-  def self.price(catalog, cart, get_one_free_amount) 
-		total_price = 0
+  def self.price(catalog, cart, one_4_free_amounts) 
+		total = 0
 		cart.each do |item, quantity| 
-			item_price = catalog[item]
-			item_subtotal = quantity*item_price
-			if get_one_free_amount.include?item and quantity == get_one_free_amount[item]
-				item_subtotal -= item_price
-			end
-			total_price += item_subtotal 
+			price = catalog[item]
+			subtotal = calc_subtotal(quantity, price)
+			subtotal = apply_one_free(subtotal, item, price, quantity, one_4_free_amounts)
+			total += subtotal 
 		end
-		total_price
+		total
   end
+
+	def self.calc_subtotal(quantity, price)
+		quantity*price
+  end
+
+	def self.apply_one_free(subtotal, item, price, quantity, one_4_free_amounts)
+			if one_4_free_amounts.include?item and quantity == one_4_free_amounts[item]
+				subtotal -= price
+			end
+			subtotal 
+	end
 end
 
 
