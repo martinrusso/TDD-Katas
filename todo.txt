@@ -1,0 +1,2 @@
+- Handle multiple offers
+- Handle case of purchased quantity higher than offer quantity
