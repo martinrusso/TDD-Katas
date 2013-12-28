@@ -31,7 +31,7 @@ class TC_Supermarket < Test::Unit::TestCase
     price = Supermarket.price(catalog, cart, {'Noodles' => 3}, {})
     assert_equal(0.5, price)
   end
-  def test_buy_3_soup_cans_for_five
+  def test_buy_three_soup_cans_for_five
     cart = {'Soup cans' => 3}
     soup_cans_offer = Offer.new("Soup cans", 3, 5)
     price = Supermarket.price(catalog, cart, {}, soup_cans_offer)

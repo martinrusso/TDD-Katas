@@ -12,11 +12,9 @@ class Supermarket
     end
     total
   end
-
   def self.calc_subtotal(quantity, price)
     quantity*price
   end
-
   def self.apply_one_free(subtotal, item, price, quantity, one_for_free_required_quantities)
     if one_for_free_required_quantities.include?item 
       if quantity == one_for_free_required_quantities[item]
@@ -33,7 +31,6 @@ class Supermarket
     end   
     return subtotal
   end
-
 end
 
 
