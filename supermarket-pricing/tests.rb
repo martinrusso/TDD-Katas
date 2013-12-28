@@ -6,6 +6,10 @@ class TC_Supermarket < Test::Unit::TestCase
   def catalog
     {'Loaf of Bread' => 1, 'Noodles' => 0.5, 'Soup cans' => 2}
   end
+  def test_empty_cart
+    price = Supermarket.price(catalog, {}, {}, {})
+    assert_equal(0, price)
+  end
   def test_buy_one_product
     cart = {'Loaf of Bread' => 1}
     price = Supermarket.price(catalog, cart, {}, {})
