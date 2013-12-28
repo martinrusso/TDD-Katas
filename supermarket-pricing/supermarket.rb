@@ -16,22 +16,24 @@ class Supermarket
     quantity*price
   end
   def self.apply_one_free(subtotal, item, price, quantity, one_for_free_required_quantities)
+    amount = subtotal
     if one_for_free_required_quantities.include?item 
       if quantity == one_for_free_required_quantities[item]
-        subtotal -= price 
+        amount -= price 
       end
     end
-    subtotal 
+    amount
   end
   def self.apply_offers(subtotal, item, quantity, offers)
+    amount = subtotal
     offers.each do |offer|
       if offer[:product] == item
         if offer[:quantity] == quantity
-          subtotal = offer[:price]
+          amount = offer[:price]
         end
       end   
     end
-    return subtotal
+    amount
   end
 end
 
