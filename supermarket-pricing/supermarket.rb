@@ -7,7 +7,7 @@ class Supermarket
       price = catalog[item]
       subtotal = calc_subtotal(quantity, price)
       subtotal = apply_one_free(subtotal, item, price, quantity, one_for_free_required_quantities)
-      subtotal = apply_offers(subtotal, item, quantity, offers)
+      subtotal = apply_offers(subtotal, item, price, quantity, offers)
       total += subtotal 
     end
     total
@@ -24,13 +24,17 @@ class Supermarket
     end
     amount
   end
-  def self.apply_offers(subtotal, item, quantity, offers)
+  def self.apply_offers(subtotal, item, price, quantity, offers)
     amount = subtotal
     offers.each do |offer|
       if offer[:product] == item
-        if offer[:quantity] == quantity
-          amount = offer[:price]
+        amount = 0
+        unbilled_quantity = quantity
+        while unbilled_quantity >= offer[:quantity]
+          amount += offer[:price]
+          unbilled_quantity -= offer[:quantity]
         end
+        amount += unbilled_quantity*price
       end   
     end
     amount

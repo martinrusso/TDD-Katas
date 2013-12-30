@@ -1,1 +1,1 @@
-- Handle case of purchased quantity higher than offer quantity
+- Handle case of purchased quantity greater than one-for-free required quantity

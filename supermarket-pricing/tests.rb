@@ -41,6 +41,13 @@ class TC_Supermarket < Test::Unit::TestCase
     price = Supermarket.price(catalog, cart, {}, [soup_cans_offer])
     assert_equal(5, price)
   end
+  def test_buy_four_soup_cans_with_offer_three_for_five
+    cart = {'Soup cans' => 4}
+    soup_cans_offer = Offer.new("Soup cans", 3, 5)
+    price = Supermarket.price(catalog, cart, {}, [soup_cans_offer])
+    # One soup can should be paid full price and three at offer price
+    assert_equal(7, price)
+  end
   def test_buy_three_soup_cans_for_five_and_five_noodles_for_two
     cart = {'Soup cans' => 3, 'Noodles'  => 5}
     soup_cans_offer = Offer.new("Soup cans", 3, 5)
