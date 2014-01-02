@@ -1,1 +1,1 @@
-- Handle case of purchased quantity greater than one-for-free required quantity
+- Enforce limits on offers: e.g. "Buy two get one free, max one purchase per household"

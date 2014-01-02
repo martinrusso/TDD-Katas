@@ -18,8 +18,11 @@ class Supermarket
   def self.apply_one_free(subtotal, item, price, quantity, one_for_free_required_quantities)
     amount = subtotal
     if one_for_free_required_quantities.include?item 
-      if quantity == one_for_free_required_quantities[item]
+      remaining_quantity = quantity
+      required_quantity = one_for_free_required_quantities[item]
+      while remaining_quantity >= required_quantity
         amount -= price 
+        remaining_quantity -= required_quantity
       end
     end
     amount

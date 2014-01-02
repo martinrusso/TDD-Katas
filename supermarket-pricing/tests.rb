@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require "./supermarket"
 require "test/unit"
 
@@ -29,6 +30,16 @@ class TC_Supermarket < Test::Unit::TestCase
     cart = {'Noodles' => 3}
     price = Supermarket.price(catalog, cart, {'Noodles' => 3}, {})
     assert_equal(1, price)
+  end
+  def test_buy_four_noodles_with_offer_buy_two_get_one_free
+    cart = {'Noodles' => 4}
+    price = Supermarket.price(catalog, cart, {'Noodles' => 3}, {})
+    assert_equal(1.5, price)
+  end
+  def test_buy_four_soup_cans_with_offer_buy_two_get_one_free
+    cart = {'Soup cans' => 4}
+    price = Supermarket.price(catalog, cart, {'Soup cans' => 3}, {})
+    assert_equal(6, price)
   end
   def test_buy_one_noodles_get_none_free
     cart = {'Noodles' => 1}
